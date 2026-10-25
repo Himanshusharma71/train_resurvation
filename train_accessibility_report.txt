@@ -1,0 +1,328 @@
+TRAIN RESERVATION ACCESSIBILITY REPORT
+Source: /workspace/scratch/baccec81ba2b/train_checker/train_reservation_broken.html
+Observed issues: 27 | Manual review: 3 | Passed checks: 24
+Scope: labels, associations, names, required indicators, validation, custom radios,
+terms trigger, status updates and selected text contrast. Not a full WCAG audit.
+
+ISSUE-001 [ISSUE] Visible label | #from
+Criterion / guidance: 3.3.2 — Labels or Instructions
+Actual: The field has no visible purpose label. Computed accessible name: 'From station'.
+Expected: A persistent visible label identifies the field.
+Recommendation:
+1. Provide a visible <label> for this field, e.g. "From station".
+2. Use the unique control id "from" and set the label for attribute to "from".
+3. Keep the label visible before and after entering a value.
+
+ISSUE-002 [ISSUE] Required state | #from
+Criterion / guidance: 1.3.1 — Info and Relationships / required-state technique
+Actual: Required by the demo submission handler rejects an empty origin, but neither required nor aria-required="true" is supplied.
+Expected: The required state is programmatically exposed.
+Recommendation:
+1. Add required to the native control #from, or aria-required="true" where appropriate.
+2. Ensure validation enforces the business rule; aria-required alone does not validate.
+
+ISSUE-003 [ISSUE] Visible required indicator | #from
+Criterion / guidance: 3.3.2 — Labels or Instructions
+Actual: The required field is not visibly identified as required.
+Expected: Required status is clear before submission.
+Recommendation:
+1. Add "(required)" or an asterisk next to its visible label.
+2. If using an asterisk, explain its meaning before the form.
+
+ISSUE-004 [ISSUE] Label association | #to
+Criterion / guidance: 1.3.1 — Info and Relationships
+Actual: The visible label 'To station *' is not programmatically associated with this control.
+Expected: The intended label and field have a programmatic relationship.
+Recommendation:
+1. Use <label for="to"> for the visible label.
+2. Ensure the control id="to" is unique and matches for exactly.
+3. Alternatively, give the existing visible span a unique id and reference it with aria-labelledby.
+
+ISSUE-005 [ISSUE] Missing accessible name | #to
+Criterion / guidance: 4.1.2 — Name, Role, Value
+Actual: Chromium exposes an empty accessible name for this field.
+Expected: The field has a meaningful programmatic name.
+Recommendation:
+1. Provide a visible <label> for this field, e.g. "To station".
+2. Use the unique control id "to" and set the label for attribute to "to".
+3. Keep the label visible before and after entering a value.
+Evidence: {"role": "textbox", "name": "", "description": "", "states": {"invalid": "false", "focusable": true, "editable": "plaintext", "settable": true, "multiline": false, "readonly": false, "required": true}}
+
+ISSUE-006 [ISSUE] Label association | #travel-class
+Criterion / guidance: 1.3.1 — Info and Relationships
+Actual: The visible label 'Travel Class' is not programmatically associated with this control.
+Expected: The intended label and field have a programmatic relationship.
+Recommendation:
+1. Use <label for="travel-class"> for the visible label.
+2. Ensure the control id="travel-class" is unique and matches for exactly.
+3. Alternatively, give the existing visible span a unique id and reference it with aria-labelledby.
+
+ISSUE-007 [ISSUE] Visible label / accessible name mismatch | #travel-class
+Criterion / guidance: 2.5.3 — Label in Name
+Actual: Visible label is 'Travel Class'; Chromium-computed accessible name is 'Ticket Type'.
+Expected: The accessible name contains the visible label text in the same order.
+Recommendation:
+1. Remove the conflicting aria-label and associate the visible label "Travel Class".
+2. If ARIA naming is needed, include the visible label in the effective accessible name.
+3. Check aria-labelledby first, because it takes precedence over aria-label.
+
+ISSUE-008 [ISSUE] Required state | #passengers
+Criterion / guidance: 1.3.1 — Info and Relationships / required-state technique
+Actual: Required by visible asterisk, but neither required nor aria-required="true" is supplied.
+Expected: The required state is programmatically exposed.
+Recommendation:
+1. Add required to the native control #passengers, or aria-required="true" where appropriate.
+2. Ensure validation enforces the business rule; aria-required alone does not validate.
+
+ISSUE-009 [ISSUE] Label association | #email
+Criterion / guidance: 1.3.1 — Info and Relationships
+Actual: The visible label 'Email Address *' is not programmatically associated with this control.
+Expected: The intended label and field have a programmatic relationship.
+Recommendation:
+1. Use <label for="email"> for the visible label.
+2. Ensure the control id="email" is unique and matches for exactly.
+3. Alternatively, give the existing visible span a unique id and reference it with aria-labelledby.
+
+ISSUE-010 [ISSUE] Visible label / accessible name mismatch | #email
+Criterion / guidance: 2.5.3 — Label in Name
+Actual: Visible label is 'Email Address'; Chromium-computed accessible name is 'Contact email'.
+Expected: The accessible name contains the visible label text in the same order.
+Recommendation:
+1. Remove the conflicting aria-label and associate the visible label "Email Address".
+2. If ARIA naming is needed, include the visible label in the effective accessible name.
+3. Check aria-labelledby first, because it takes precedence over aria-label.
+
+ISSUE-011 [ISSUE] Required state | #email
+Criterion / guidance: 1.3.1 — Info and Relationships / required-state technique
+Actual: Required by visible asterisk, but neither required nor aria-required="true" is supplied.
+Expected: The required state is programmatically exposed.
+Recommendation:
+1. Add required to the native control #email, or aria-required="true" where appropriate.
+2. Ensure validation enforces the business rule; aria-required alone does not validate.
+
+ISSUE-012 [ISSUE] Required asterisk explanation | #reservation
+Criterion / guidance: 3.3.2 — Labels or Instructions
+Actual: Several labels contain *, but the form does not explain its meaning.
+Expected: The meaning of required-field markers is stated before the form.
+Recommendation:
+1. Add before the form: "Fields marked with an asterisk (*) are required."
+2. Alternatively, use the text "(required)" beside each required label.
+
+ISSUE-013 [ISSUE] Native radio group label | [data-test="TC09"]
+Criterion / guidance: 1.3.1 — Info and Relationships
+Actual: Female, Male and Other have individual labels, but the visible Gender heading is not a group label.
+Expected: The relationship between Gender and its options is programmatically available.
+Recommendation:
+1. Wrap the native radios in <fieldset> with <legend>Gender</legend>.
+2. Retain their shared name="gender" and existing individual labels.
+
+ISSUE-014 [ISSUE] Custom radio group name | #berth-group
+Criterion / guidance: 1.3.1 / 4.1.2 — Group relationship and name
+Actual: The radiogroup has an empty computed name; Berth Preference is only adjacent visible text.
+Expected: The radio group is named by its visible heading.
+Recommendation:
+1. Give the Berth Preference span a unique id, e.g. berth-label.
+2. Set aria-labelledby="berth-label" on #berth-group.
+3. Retain role="radio" and valid aria-checked states on the options.
+Evidence: {"role": "radiogroup", "name": "", "description": "", "states": {"required": false}}
+
+ISSUE-015 [REVIEW] Help button name quality | #help
+Criterion / guidance: Review 4.1.2 — meaningful accessible name
+Actual: The computed name is 'ⓘ', a symbol rather than an explicit purpose label.
+Expected: Users can understand that this button opens help.
+Recommendation:
+1. Add aria-label="Help with train reservation" or meaningful visible button text.
+2. Verify the result with a screen reader.
+
+ISSUE-016 [ISSUE] Missing field-specific error | #from
+Criterion / guidance: 3.3.1 — Error Identification; validation coverage
+Actual: Empty submission shows only 'Some information is missing. Please try again.'; this field has no visible identifying error. Required evidence: the demo submission handler rejects an empty origin.
+Expected: Missing required input is identified and the error described in text.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"aria_describedby": ""}
+
+ISSUE-017 [ISSUE] Missing field-specific error | #to
+Criterion / guidance: 3.3.1 — Error Identification; validation coverage
+Actual: Empty submission shows only 'Some information is missing. Please try again.'; this field has no visible identifying error. Required evidence: visible asterisk and native required attribute.
+Expected: Missing required input is identified and the error described in text.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"aria_describedby": ""}
+
+ISSUE-018 [ISSUE] Missing field-specific error | #departure
+Criterion / guidance: 3.3.1 — Error Identification; validation coverage
+Actual: Empty submission shows only 'Some information is missing. Please try again.'; this field has no visible identifying error. Required evidence: visible asterisk and native required attribute.
+Expected: Missing required input is identified and the error described in text.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"aria_describedby": ""}
+
+ISSUE-019 [ISSUE] Missing field-specific error | #passengers
+Criterion / guidance: 3.3.1 — Error Identification; validation coverage
+Actual: Empty submission shows only 'Some information is missing. Please try again.'; this field has no visible identifying error. Required evidence: visible asterisk.
+Expected: Missing required input is identified and the error described in text.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"aria_describedby": ""}
+
+ISSUE-020 [ISSUE] Missing field-specific error | #full-name
+Criterion / guidance: 3.3.1 — Error Identification; validation coverage
+Actual: Empty submission shows only 'Some information is missing. Please try again.'; this field has no visible identifying error. Required evidence: visible asterisk, aria-required and submission validation.
+Expected: Missing required input is identified and the error described in text.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"aria_describedby": ""}
+
+ISSUE-021 [ISSUE] Missing field-specific error | #email
+Criterion / guidance: 3.3.1 — Error Identification; validation coverage
+Actual: Empty submission shows only 'Some information is missing. Please try again.'; this field has no visible identifying error. Required evidence: visible asterisk.
+Expected: Missing required input is identified and the error described in text.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"aria_describedby": ""}
+
+ISSUE-022 [REVIEW] Focus after failed submission | #reservation
+Criterion / guidance: Requested UX check — not a standalone WCAG failure
+Actual: Focus remains on Reserve Seat after the failed submission.
+Expected: Users can promptly locate and correct the first error.
+Recommendation:
+1. Identify each invalid field and describe the problem with specific error text.
+2. Give each error a unique id and include that id in the field aria-describedby (preserve existing hint IDs).
+3. Set aria-invalid="true" after failure and clear it when the field is corrected.
+4. After a failed submission, focus the first invalid field or an accessible linked error summary.
+Evidence: {"focus": "<button class=\"button\" type=\"submit\">Reserve Seat</button>"}
+
+ISSUE-023 [ISSUE] Validation status announcement | #form-error
+Criterion / guidance: 4.1.3 — Status Messages
+Actual: Submission changes error/status text without live-region semantics or focus on the message.
+Expected: The status update is programmatically available without requiring the user to locate it.
+Recommendation:
+1. Use a pre-existing role="alert" or appropriate live region for the validation summary.
+2. Provide specific errors and avoid duplicate announcements when moving focus.
+
+ISSUE-024 [ISSUE] Invalid values accepted | #reservation
+Criterion / guidance: Validation defect; related to 3.3.1 / 3.3.3
+Actual: The form reports a submitted request despite an invalid email, zero passengers, and missing required departure date.
+Expected: The form validates required values and formats before reporting success.
+Recommendation:
+1. Validate all required fields, the email format, and the passenger range (1–6).
+2. Because novalidate is used, implement the complete custom validation flow or restore accessible native validation.
+3. Show field-specific errors, associate them, and report success only after all rules pass.
+Evidence: {"result": "Demo request submitted. No ticket booked.", "native_validity": [{"id": "departure", "valid": false, "message": "Please fill out this field."}, {"id": "passengers", "valid": false, "message": "Value must be greater than or equal to 1."}, {"id": "email", "valid": false, "message": "Please include an '@' in the email address. 'bad-email' is missing an '@'."}]}
+
+ISSUE-025 [ISSUE] Custom radio keyboard interaction | #berth-group
+Criterion / guidance: APG radio pattern; review keyboard operability under 2.1.1
+Actual: Arrow keys and Space do not update the tested focus/selection/tabindex states.
+Expected: Standard radio keys operate the group and keep checked state and focus synchronized.
+Recommendation:
+1. Prefer native <input type="radio"> controls with labels and a shared name.
+2. For custom radios, implement ArrowRight/Down for next and ArrowLeft/Up for previous, wrapping at both ends.
+3. Space checks the focused option. Set only one aria-checked="true".
+4. Keep tabindex="0" on the checked option (first option if none checked), and "-1" on the others.
+Evidence: {"failed_actions": [{"key": "ArrowRight", "actual": {"focus": "lower", "checked": ["lower"], "tabStops": ["lower"]}, "expected": {"focus": "upper", "checked": ["upper"], "tabStops": ["upper"]}}, {"key": "ArrowDown", "actual": {"focus": "lower", "checked": ["lower"], "tabStops": ["lower"]}, "expected": {"focus": "upper", "checked": ["upper"], "tabStops": ["upper"]}}, {"key": "ArrowLeft", "actual": {"focus": "lower", "checked": ["lower"], "tabStops": ["lower"]}, "expected": {"focus": "side", "checked": ["side"], "tabStops": ["side"]}}, {"key": "ArrowUp", "actual": {"focus": "lower", "checked": ["lower"], "tabStops": ["lower"]}, "expected": {"focus": "side", "checked": ["side"], "tabStops": ["side"]}}, {"key": "Space", "actual": {"focus": "upper", "checked": ["lower"], "tabStops": ["lower"]}, "expected": {"focus": "upper", "checked": ["upper"], "tabStops": ["upper"]}}]}
+
+ISSUE-026 [ISSUE] Custom radio pointer selection | #berth-group
+Criterion / guidance: Functional defect / state synchronization
+Actual: Clicking Upper leaves Lower checked.
+Expected: Clicking a radio updates the selection and its programmatic state.
+Recommendation:
+1. Handle click selection using the same update function as the keyboard handlers.
+2. Update aria-checked, tabindex, focus and selected appearance together.
+Evidence: {"focus": "upper", "checked": ["lower"], "tabStops": ["lower"]}
+
+ISSUE-027 [ISSUE] Search results announcement | #train-results
+Criterion / guidance: 4.1.3 — Status Messages
+Actual: Find Trains reveals the results count without status/live-region semantics; focus stays on the button.
+Expected: The result count is available to assistive technology as a status update.
+Recommendation:
+1. Create an initially empty, visible role="status" container before the action.
+2. Update its text to "3 trains found" after search; keep the result list separately structured.
+
+ISSUE-028 [ISSUE] Terms trigger keyboard access | .fake-link
+Criterion / guidance: 2.1.1 — Keyboard / 4.1.2 — Name, Role, Value
+Actual: The clickable span opens Terms with a mouse, but has no native button role, is outside the Tab sequence and cannot receive focus for Enter activation.
+Expected: The action is reachable and operable by keyboard with appropriate semantics.
+Recommendation:
+1. Replace the span with <button type="button">Terms and conditions</button>.
+2. Place the separate terms button outside the checkbox label to avoid nested interactive controls.
+3. Keep a clear visible focus indicator and a meaningful accessible name.
+
+ISSUE-029 [REVIEW] Terms panel design | #terms-dialog
+Criterion / guidance: Manual design review — disclosure versus dialog
+Actual: The revealed terms content is an ordinary div. Its name suggests a dialog, but the page does not establish modal behavior.
+Expected: Choose and implement a consistent disclosure or dialog pattern.
+Recommendation:
+1. For an inline disclosure, use a button with aria-expanded and aria-controls; keep content in logical reading order.
+2. If a modal dialog is intended, use a named <dialog> opened with showModal(), initial focus, Escape close and focus return.
+3. Do not add aria-modal="true" unless interaction outside the dialog is actually blocked.
+
+ISSUE-030 [ISSUE] Text contrast | .low-contrast
+Criterion / guidance: 1.4.3 — Contrast (Minimum)
+Actual: The text 'Maximum 6 passengers.' has contrast 1.90:1 (rgb(181, 189, 200) on rgb(255, 255, 255)).
+Expected: Normal-size text has at least 4.5:1 contrast.
+Recommendation:
+1. Use a darker foreground, e.g. #475569 on white.
+2. Recheck the rendered foreground/background contrast after the change.
+Evidence: {"color": "rgb(181, 189, 200)", "background": "rgb(255, 255, 255)", "size": "16px", "weight": "400", "text": "Maximum 6 passengers."}
+
+PASSED CHECKS
+- #to: visible label present
+- #to: required attribute/state supplied
+- #departure: visible label present
+- #departure: label association present
+- #departure: visible label included in accessible name
+- #departure: required attribute/state supplied
+- #train: visible label present
+- #train: label association present
+- #train: visible label included in accessible name
+- #travel-class: visible label present
+- #passengers: visible label present
+- #passengers: label association present
+- #passengers: visible label included in accessible name
+- #full-name: visible label present
+- #full-name: label association present
+- #full-name: visible label included in accessible name
+- #full-name: required attribute/state supplied
+- #age: visible label present
+- #age: label association present
+- #age: visible label included in accessible name
+- #phone: visible label present
+- #phone: label association present
+- #phone: visible label included in accessible name
+- #email: visible label present
+
+OBSERVATIONS / LIMITS
+- #phone: .hidden-label is present but computed display is 'block'; .field>label overrides display:none. No hidden-label failure reported.
+- Existing label text, browser AX names, rendered CSS and actual interactions were inspected; data-test IDs were not treated as proof of a failure.
+- Error associations are not reported as separate confirmed defects when no corresponding visible error exists; recommendations explain how to provide and associate it.
+- A symbol-only help name and the terms-panel design require human review.
+- The visibility probe is limited; occlusion, complex clipping, screen-reader speech, semantic wording and full WCAG coverage still require additional tests.
+- Required assumptions come from the inspected fixture rules/asterisks. Confirm actual business rules before applying this checker to a different page.
+
+REFERENCE GUIDANCE
+https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions
+https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships
+https://www.w3.org/WAI/WCAG22/Understanding/label-in-name
+https://www.w3.org/WAI/WCAG22/Understanding/error-identification
+https://www.w3.org/WAI/ARIA/apg/patterns/radio/
+https://www.w3.org/WAI/WCAG22/Understanding/status-messages
+https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum

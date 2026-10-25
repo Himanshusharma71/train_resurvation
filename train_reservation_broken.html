@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RailGo | Train Reservation — Accessibility Training</title>
+<style>
+*{box-sizing:border-box}body{font:16px/1.5 Arial,sans-serif;background:#f1f5f9;color:#172033;margin:0}header{background:#122b53;color:white;padding:24px}header h1{margin:0}main{max-width:850px;margin:28px auto;padding:0 16px}.panel{background:white;border-radius:12px;padding:25px;box-shadow:0 5px 20px #0f172a12}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.field{margin-bottom:18px}.field>label,.field>.field-label{display:block;font-weight:700;margin-bottom:6px}input,select,button{font:inherit}input:not([type=radio]):not([type=checkbox]),select{width:100%;padding:11px;border:1px solid #94a3b8;border-radius:7px}.choice{display:inline-block;margin-right:16px}.button{border:0;background:#1d0370;color:white;padding:12px 22px;border-radius:7px;cursor:pointer}.muted{color:#64748b}.error{color:#c52121;font-size:14px;margin:5px 0}.hidden-label{display:none}.custom-radio{display:inline-block;border:1px solid #777;padding:8px 16px;border-radius:5px;margin-right:10px;cursor:pointer}.custom-radio[aria-checked=true]{background:#ddd}.fake-link{color:#0645ad;text-decoration:underline;cursor:pointer}.banner{margin:16px 0;padding:12px;background:#fff2c4;border-radius:7px}.low-contrast{color:#b5bdc8}footer{text-align:center;padding:20px}@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style></head><body><header><h1>RailGo — Book Your Train</h1><p>Demo site • no real tickets or payments</p></header>
+<main><div class="banner">ACCESSIBILITY TRAINING: This page intentionally contains defects. Use fictional passenger data.</div><section class="panel"><h2>Train Reservation Form</h2><p class="muted">Complete your journey and passenger details.</p>
+<form id="reservation" novalidate>
+<h3>Journey Details</h3><div class="grid">
+<div class="field"><input id="from" name="from" placeholder="From station" data-test="TC01"></div>
+<div class="field"><label for="destination-wrong">To station *</label><input id="to" name="to" required data-test="TC02"></div>
+<div class="field"><label for="departure">Departure Date *</label><input type="date" id="departure" name="departure" required data-test="TC03"><p class="error" id="departure-error" hidden>Select a departure date.</p></div>
+<div class="field"><label for="train">Train</label><select id="train" name="train"><option value="">Select a train</option><option>Express 12001</option><option>Intercity 14502</option><option>Night Mail 13003</option></select></div>
+<div class="field"><span class="field-label">Travel Class</span><select id="travel-class" aria-label="Ticket Type" name="travel_class" data-test="TC04"><option value="">Choose class</option><option>Sleeper</option><option>AC 3 Tier</option><option>AC 2 Tier</option></select></div>
+<div class="field"><label for="passengers">Number of Passengers *</label><input id="passengers" type="number" min="1" max="6" name="passengers" data-test="TC05"><span class="low-contrast">Maximum 6 passengers.</span></div>
+</div>
+<h3>Passenger Details</h3><div class="grid">
+<div class="field"><label for="full-name">Full Name *</label><input id="full-name" name="full_name" aria-required="true" data-test="TC06"></div>
+<div class="field"><label for="age">Age</label><input id="age" type="number" name="age"></div>
+<div class="field"><label for="phone" class="hidden-label">Mobile Number</label><input id="phone" name="phone" inputmode="numeric" data-test="TC07"></div>
+<div class="field"><span class="field-label">Email Address *</span><input id="email" name="email" type="email" aria-label="Contact email" data-test="TC08"></div>
+</div>
+<div class="field"><span class="field-label">Gender</span><div data-test="TC09"><label class="choice"><input type="radio" name="gender" value="female"> Female</label><label class="choice"><input type="radio" name="gender" value="male"> Male</label><label class="choice"><input type="radio" name="gender" value="other"> Other</label></div></div>
+<div class="field"><span class="field-label">Berth Preference</span><div data-test="TC10" id="berth-group" role="radiogroup"><div role="radio" tabindex="0" aria-checked="true" class="custom-radio" data-value="lower">Lower</div><div role="radio" tabindex="-1" aria-checked="false" class="custom-radio" data-value="upper">Upper</div><div role="radio" tabindex="-1" aria-checked="false" class="custom-radio" data-value="side">Side</div></div><p class="muted">Arrow keys should change the option, but currently do not.</p></div>
+<div class="field"><label><input type="checkbox" id="terms" name="terms" data-test="TC11"> I accept the <span class="fake-link" onclick="document.getElementById('terms-dialog').hidden=false">terms and conditions</span>.</label></div>
+<div class="field"><button type="button" class="button" id="search-trains" onclick="document.getElementById('train-results').hidden=false">Find Trains</button> <button type="button" id="help" data-test="TC12" onclick="alert('Demo help')">ⓘ</button></div>
+<div id="train-results" hidden data-test="TC13"><h3>Available Trains</h3><p>3 trains found (demo result). This update is not announced.</p></div>
+<div id="form-error" class="error" data-test="TC14"></div><button class="button" type="submit">Reserve Seat</button>
+</form></section>
+<div id="terms-dialog" hidden style="margin-top:20px;padding:20px;background:white;border:1px solid #64748b" data-test="TC15"><h2>Terms and Conditions</h2><p>Training-only booking. No payment is accepted.</p><button type="button" onclick="document.getElementById('terms-dialog').hidden=true">Close</button></div>
+</main><footer>RailGo accessibility testing lab — deliberately broken sample</footer>
+<script>
+// Deliberate training defects: no field-specific errors, no error associations, no focus movement.
+document.getElementById('reservation').addEventListener('submit',function(event){event.preventDefault();const full=document.getElementById('full-name').value.trim();const from=document.getElementById('from').value.trim();const to=document.getElementById('to').value.trim();if(!full||!from||!to){document.getElementById('form-error').textContent='Some information is missing. Please try again.';}else{document.getElementById('form-error').textContent='Demo request submitted. No ticket booked.';}});
+</script></body></html>
